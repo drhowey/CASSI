@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>CASSI: Genome-Wide Interaction Analysis Software</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="cassistyles.css" />
+<link rel="shortcut icon" href="favicon.ico" />
+</head>
+<body>
+<!-- Begin Wrapper -->
+<div id="wrapper">
+<table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>
+<!-- Begin Header -->
+<div id="header">
+<table><tr>
+<td>
+<img width="150" src="cassi-logo.png" alt="CASSI: Genome-Wide Interaction Analysis Software"/>
+</td>
+<td>
+<p style="margin-left: 1em;">CASSI: Genome-Wide Interaction Analysis Software</p>
+</td></tr>
+</table>
+</div>
+<!-- End Header -->
+<!-- Begin Menu Navigation -->
+<ul id="menunav">
+<li><a href="index.html">Home</a></li>
+<li><a href="downloads.html">Download</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+<!-- End Menu Navigation -->
+
+</td></tr>
+<tr><td>
+<table border="0" cellpadding="0" cellspacing="0"><tr>
+<td valign="top">
+<!-- Begin Left Column -->
+<div id="leftcolumn">
+<!-- Begin Contents Navigation -->
+<div id="navcontainer">
+<ul>
+<li><a href="introduction.html">1 Introduction</a>
+</li>
+<li><a href="installation.html">2 Installation</a>
+</li>
+<li><a href="using.html">3 Using CASSI</a>
+<ul>
+<li><a href="using.html#input">3.1 Input Files</a></li>
+<li><a href="using.html#basic-options">3.2 Options</a></li>
+<li><a href="using.html#parameterfile">3.3 Parameter file</a></li>
+<li><a href="using.html#memory">3.4 Memory options</a></li>
+<li><a href="using.html#rsq">3.5 <i>R</i><sup>2</sup> and D'</a></li>
+</ul>
+</li>
+<li><a href="joint-effects.html">4 Joint Effects</a>
+<ul>
+<li><a href="joint-effects.html#je-options">4.1 Options</a></li>
+<li><a href="joint-effects.html#je-output">4.2 Output File</a></li>
+</ul>
+</li>
+<li><a href="adjusted-wu.html">5 Adjusted Wu</a>
+<ul>
+<li><a href="adjusted-wu.html#awu-options">5.1 Options</a></li>
+<li><a href="adjusted-wu.html#awu-output">5.2 Output File</a></li>
+</ul>
+</li>
+<li><a href="adjusted-fast-epistasis.html">6 Adjusted Fast Epistasis</a>
+<ul>
+<li><a href="adjusted-fast-epistasis.html#afe-options">6.1 Options</a></li>
+<li><a href="adjusted-fast-epistasis.html#afe-output">6.2 Output File</a></li>
+</ul>
+</li>
+<li><a href="wellek-ziegler.html">7 Wellek Ziegler</a>
+<ul>
+<li><a href="wellek-ziegler.html#wz-options">7.1 Options</a></li>
+<li><a href="wellek-ziegler.html#wz-output">7.2 Output File</a></li>
+</ul>
+</li>
+<li><a href="logistic-regression.html">8 Logistic Regression</a>
+<ul>
+<li><a href="logistic-regression.html#lr-options">8.1 Options</a></li>
+<li><a href="logistic-regression.html#lr-output">8.2 Output File</a></li>
+<li><a href="logistic-regression.html#covariates">8.3 Covariates</a></li>
+</ul>
+</li>
+<li><a href="linear-regression.html">9 Linear Regression</a>
+<ul>
+<li><a href="linear-regression.html#lin-options">9.1 Options</a></li>
+<li><a href="linear-regression.html#lin-output">9.2 Output File</a></li>
+<li><a href="linear-regression.html#lin-covariates">9.3 Covariates</a></li>
+</ul>
+</li>
+<li><a href="multiple-tests.html">10 Filtering Multiple Tests</a>
+<ul>
+<li><a href="multiple-tests.html#screening">10.1 Screening Tests</a></li>
+<li><a href="multiple-tests.html#calculate-all">10.2 Calculating All Tests</a></li>
+<li><a href="multiple-tests.html#run-times">10.3 Runtimes</a></li>
+</ul>
+</li>
+<li><a href="references.html">References</a></li>
+</ul>
+</div>
+<!-- End Contents Navigation -->
+</div>
+<!-- End Left Column -->
+</td>
+<td valign="top">
+<!-- Begin Right Column -->
+<div id="rightcolumn">
+<h1>4 Joint Effects</h1>
+<p>
+For full details of the joints effects test and the accompanying notation please refer to the manuscript by <a href="references.html#ueki:etal:12">Ueki and Cordell (2012)</a>. </p>
+<h2><a name="je-options">4.1 Options</a></h2>
+<p>
+The options that are specific to the joint effects test are: </p>
+<table id="tablestylel" class="center">
+<tr><th>Option </th><th>Description</th></tr>
+<tr class="alt"><td valign="top">-je </td><td valign="top">perform the joint effects test</td></tr>
+<tr><td valign="top">-je-thcc t </td><td valign="top">p-value threshold for case/control test</td></tr>
+<tr class="alt"><td valign="top">-je-thco t </td><td valign="top">p-value threshold for case only test</td></tr>
+<tr><td valign="top">-je-th t </td><td valign="top">p-value threshold for either test</td></tr>
+<tr class="alt"><td valign="top">-je-cc-only </td><td valign="top">perform the case/control test only</td></tr>
+<tr><td valign="top">-je-co-only </td><td valign="top">perform the case only test only</td></tr>
+<tr class="alt"><td valign="top">-je-cellmin m </td><td valign="top">minimum cell count required in each cell to perform test</td></tr>
+<tr><td valign="top">-je-so </td><td valign="top">suppress results of test</td></tr>
+</table>
+<p>
+CASSI performs both the case only test and case/control test for each pair of tested SNPs by default. The results of the test are recorded for the pair of SNPs if <i>either</i> p-value threshold is met. Both thresholds may be set simultaneously by using the <tt>-je-th</tt> option. The default value for both thresholds is 0.0001. </p>
+<p>
+To avoid issues with insufficient data, a minimum number cell count is required (where cells are given by the genotype combinations, 9 for cases and 9 for controls). The default number is set to 5, but can be changed with the <tt>-je-mincell</tt> option. Setting the cell count minimum to 0 obviously gives no minimum. If there is no cell minimum and any cells are 0 then all any cells will have 0.5 added. </p>
+<p>
+For other basic options see <a href="using.html#basic-options">section 3.2</a>. </p>
+<h2><a name="je-output">4.2 Output File</a></h2>
+<p>
+The output file from running a joint effects SNP interaction analysis using CASSI will look something like the following: </p>
+<pre>SNP1 CHR1 ID1 BP1 SNP2 CHR2 ID2 BP2 JE_CASE_LOG_OR JE_CASE_SE JE_CTRL_LOG_OR JE_CTRL_SE JE_CC_CHISQ JE_CC_P JE_ALT_CC JE_CO_CHISQ JE_CO_P JE_ALT_CO
+4 1 rs5367015 220368 558 1 rs7129551 4544990 6.34341 0.632507 3.65647 0.597288 2.00984 0.156282 N 16.0982 6.01412e-05 N
+5 1 rs12363280 221980 506 1 rs1102289 4422547 4.1916 1.04833 4.15869 1.04265 0.00334286 0.953894 N 19.3086 1.11203e-05 N
+5 1 rs12363280 221980 512 1 rs1083109 4447884 5.17158 0.820119 4.93334 0.742762 0.467668 0.494062 N 17.9887 2.22222e-05 N
+5 1 rs12363280 221980 526 1 rs1500597 4483159 4.1916 1.04833 4.15869 1.04265 0.00334286 0.953894 N 19.3086 1.11203e-05 N
+5 1 rs12363280 221980 551 1 rs1103294 4534498 4.63789 0.970636 4.36155 0.95259 0.0916524 0.762087 N 20.2653 6.74113e-06 N
+... 
+ </pre>
+<p>
+The first line is a header labelling the columns of the results file. The SNP details for the pair of SNPs are given firstly followed by values calculated from the joint effects tests. Results are given for both the case only test and for the case/control test regardless of which p-value was significant enough to record the pair of SNPs. The case only test assumes that the two SNPs are in linkage equilibrium in the general population, so care must be taken in interpreting results with SNPs that are near one another. Therefore, SNPs that are too close, as definded by the <tt>-gap</tt> option, are not tested. See <a href="references.html#ueki:etal:12">Ueki and Cordell (2012)</a>. </p>
+<p>
+<b>JE_CASE_LOG_OR</b> is the log odds ratio for association in the cases and is given by <img src="http://latex.codecogs.com/png.latex?\inline \tilde{\lambda}_A \small " alt="\tilde{\lambda}_A"/>. If the alternative test is used this is given by <img src="http://latex.codecogs.com/png.latex?\inline \tilde{\mu}_A \small " alt="\tilde{\mu}_A"/>. </p>
+<p>
+<b>JE_CASE_SE</b> is the standard error of <img src="http://latex.codecogs.com/png.latex?\inline \tilde{\lambda}_A \small " alt="\tilde{\lambda}_A"/> and is given by the square root of <img src="http://latex.codecogs.com/png.latex?\inline \tilde{\nu}_A \small " alt="\tilde{\nu}_A"/>. If the alternative test is used the standard error for <img src="http://latex.codecogs.com/png.latex?\inline \tilde{\mu}_A \small " alt="\tilde{\mu}_A"/> is recorded, given by the square root of <img src="http://latex.codecogs.com/png.latex?\inline \tilde{\nu}_{\mu_A} \small " alt="\tilde{\nu}_{\mu_A}"/>. </p>
+<p>
+<b>JE_CTRL_LOG_OR</b> is the log odds ratio for association in the controls and is given by <img src="http://latex.codecogs.com/png.latex?\inline \tilde{\lambda}_N \small " alt="\tilde{\lambda}_N"/>. If the alternative test is used this is given by <img src="http://latex.codecogs.com/png.latex?\inline \tilde{\mu}_N \small " alt="\tilde{\mu}_N"/>. </p>
+<p>
+<b>JE_CTRL_SE</b> is the standard error of <img src="http://latex.codecogs.com/png.latex?\inline \tilde{\lambda}_N \small " alt="\tilde{\lambda}_N"/> and is given by the square root of <img src="http://latex.codecogs.com/png.latex?\inline \tilde{\nu}_N \small " alt="\tilde{\nu}_N"/>. If the alternative test is used the standard error for <img src="http://latex.codecogs.com/png.latex?\inline \tilde{\mu}_N \small " alt="\tilde{\mu}_N"/> is recorded, given by the square root of <img src="http://latex.codecogs.com/png.latex?\inline \tilde{\nu}_{\mu_N} \small " alt="\tilde{\nu}_{\mu_N}"/>. </p>
+<p>
+<b>JE_CC_CHISQ</b> is the <img src="http://latex.codecogs.com/png.latex?\inline \chi^2 \small " alt="\chi^2"/> test statistic with one degree of freedom for the case/control test. </p>
+<p>
+<b>JE_CC_P</b> is the corresponding p-value for the case/control test. </p>
+<p>
+<b>JE_CC_ALT</b> whether or not the alternative statistic was used for the case/control test. </p>
+<p>
+<b>JE_CO_CHISQ</b> is the <img src="http://latex.codecogs.com/png.latex?\inline \chi^2 \small " alt="\chi^2"/> test statistic with one degree of freedom for the case only test. </p>
+<p>
+<b>JE_CO_P</b> is the corresponding p-value for the case only test. </p>
+<p>
+<b>JE_CO_ALT</b> whether or not the alternative statistic was used for the case only test. </p>
+<br />
+<div class="prevnext"><span class="left"><a href="using.html">&lt;-prev</a>
+</span><span class="right"><a href="adjusted-wu.html">next-&gt;</a>
+</span></div><!-- End Right Column -->
+</div>
+</td>
+</tr></table>
+<!-- End Wrapper -->
+</td></tr></table>
+</div>
+ <!-- Start of StatCounter Code for Default Guide --> <script type="text/javascript"> var sc_project=8085233; var sc_invisible=1; var sc_security="e4dbb33e"; </script> <script type="text/javascript" src="http://www.statcounter.com/counter/counter.js"></script> <noscript><div class="statcounter"><a title="tumblr visit counter" href="http://statcounter.com/tumblr/" target="_blank"><img class="statcounter" src="http://c.statcounter.com/8085233/0/e4dbb33e/1/" alt="tumblr visit counter"></a></div></noscript> <!-- End of StatCounter Code for Default Guide --></body>
+</html>

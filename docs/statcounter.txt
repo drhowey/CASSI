@@ -1,0 +1,15 @@
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=8085233; 
+var sc_invisible=1; 
+var sc_security="e4dbb33e"; 
+</script>
+<script type="text/javascript"
+src="http://www.statcounter.com/counter/counter.js"></script>
+<noscript><div class="statcounter"><a title="tumblr visit
+counter" href="http://statcounter.com/tumblr/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/8085233/0/e4dbb33e/1/"
+alt="tumblr visit counter"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+

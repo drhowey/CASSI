@@ -1,0 +1,7 @@
+pdflatex cassi.tex
+
+bibtex cassi
+
+pdflatex cassi.tex
+
+pdflatex cassi.tex

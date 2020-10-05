@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>CASSI: Genome-Wide Interaction Analysis Software</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="cassistyles.css" />
+<link rel="shortcut icon" href="favicon.ico" />
+</head>
+<body>
+<!-- Begin Wrapper -->
+<div id="wrapper">
+<table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>
+<!-- Begin Header -->
+<div id="header">
+<table><tr>
+<td>
+<img width="150" src="cassi-logo.png" alt="CASSI: Genome-Wide Interaction Analysis Software"/>
+</td>
+<td>
+<p style="margin-left: 1em;">CASSI: Genome-Wide Interaction Analysis Software</p>
+</td></tr>
+</table>
+</div>
+<!-- End Header -->
+<!-- Begin Menu Navigation -->
+<ul id="menunav">
+<li><a href="index.html">Home</a></li>
+<li><a href="downloads.html">Download</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+<!-- End Menu Navigation -->
+
+</td></tr>
+<tr><td>
+<table border="0" cellpadding="0" cellspacing="0"><tr>
+<td valign="top">
+<!-- Begin Left Column -->
+<div id="leftcolumn">
+<!-- Begin Contents Navigation -->
+<div id="navcontainer">
+<ul>
+<li><a href="introduction.html">1 Introduction</a>
+</li>
+<li><a href="installation.html">2 Installation</a>
+</li>
+<li><a href="using.html">3 Using CASSI</a>
+<ul>
+<li><a href="using.html#input">3.1 Input Files</a></li>
+<li><a href="using.html#basic-options">3.2 Options</a></li>
+<li><a href="using.html#parameterfile">3.3 Parameter file</a></li>
+<li><a href="using.html#memory">3.4 Memory options</a></li>
+<li><a href="using.html#rsq">3.5 <i>R</i><sup>2</sup> and D'</a></li>
+</ul>
+</li>
+<li><a href="joint-effects.html">4 Joint Effects</a>
+<ul>
+<li><a href="joint-effects.html#je-options">4.1 Options</a></li>
+<li><a href="joint-effects.html#je-output">4.2 Output File</a></li>
+</ul>
+</li>
+<li><a href="adjusted-wu.html">5 Adjusted Wu</a>
+<ul>
+<li><a href="adjusted-wu.html#awu-options">5.1 Options</a></li>
+<li><a href="adjusted-wu.html#awu-output">5.2 Output File</a></li>
+</ul>
+</li>
+<li><a href="adjusted-fast-epistasis.html">6 Adjusted Fast Epistasis</a>
+<ul>
+<li><a href="adjusted-fast-epistasis.html#afe-options">6.1 Options</a></li>
+<li><a href="adjusted-fast-epistasis.html#afe-output">6.2 Output File</a></li>
+</ul>
+</li>
+<li><a href="wellek-ziegler.html">7 Wellek Ziegler</a>
+<ul>
+<li><a href="wellek-ziegler.html#wz-options">7.1 Options</a></li>
+<li><a href="wellek-ziegler.html#wz-output">7.2 Output File</a></li>
+</ul>
+</li>
+<li><a href="logistic-regression.html">8 Logistic Regression</a>
+<ul>
+<li><a href="logistic-regression.html#lr-options">8.1 Options</a></li>
+<li><a href="logistic-regression.html#lr-output">8.2 Output File</a></li>
+<li><a href="logistic-regression.html#covariates">8.3 Covariates</a></li>
+</ul>
+</li>
+<li><a href="linear-regression.html">9 Linear Regression</a>
+<ul>
+<li><a href="linear-regression.html#lin-options">9.1 Options</a></li>
+<li><a href="linear-regression.html#lin-output">9.2 Output File</a></li>
+<li><a href="linear-regression.html#lin-covariates">9.3 Covariates</a></li>
+</ul>
+</li>
+<li><a href="multiple-tests.html">10 Filtering Multiple Tests</a>
+<ul>
+<li><a href="multiple-tests.html#screening">10.1 Screening Tests</a></li>
+<li><a href="multiple-tests.html#calculate-all">10.2 Calculating All Tests</a></li>
+<li><a href="multiple-tests.html#run-times">10.3 Runtimes</a></li>
+</ul>
+</li>
+<li><a href="references.html">References</a></li>
+</ul>
+</div>
+<!-- End Contents Navigation -->
+</div>
+<!-- End Left Column -->
+</td>
+<td valign="top">
+<!-- Begin Right Column -->
+<div id="rightcolumn">
+<h1>3 Using CASSI</h1>
+<p>
+CASSI is executed as follows: </p>
+<pre> ./cassi [options] file.bed [file2.bed]
+</pre>
+<p>
+or </p>
+<pre>./cassi parameterfile.pf [file.bed] [file2.bed] </pre>
+<p>
+Executing CASSI either way will perform SNP interaction tests for every pair of SNPs in the <tt>.bed</tt> file (that are selected by the options). The results file will record every pair of SNPs that satisfy a given significance level together with extra information for the performed tests. A log file is also created recording the same information that is output to the screen, showing the used options and summary statistics of the data. </p>
+<h2><a name="input">3.1 Input Files</a></h2>
+<p>
+Basic usage of CASSI is to provide it with one binary PLINK format pedigree file: </p>
+<pre>./cassi myfile.bed </pre>
+<p>
+This requires that the corresponding <tt>.bim</tt> and <tt>.fam</tt>, files are also available. A text PLINK pedigree file, <tt>.ped</tt>, with corresponding map file, <tt>.map</tt>, may be used to create a binary file using PLINK as follows: <pre>plink --noweb --file mydata --make-bed --out myfile </pre>
+</p>
+<p>
+This will create the binary pedigree file, <tt>myfile.bed</tt>, map file, <tt>myfile.bim</tt>, and family file, <tt>myfile.fam</tt> required for use with CASSI. </p>
+<p>
+Two input files may also used: </p>
+<pre>./cassi myfile.bed myfile2.bed
+</pre>
+<h2><a name="basic-options">3.2 Options</a></h2>
+<p>
+The basic options for CASSI are as follows (typing <tt>./cassi</tt> with no options will output the available options): </p>
+<table id="tablestylel" class="center">
+<tr><th>Option </th><th>Description</th></tr>
+<tr class="alt"><td valign="top">-snp1 a1 a2 </td><td valign="top">first SNP window, a1 = Start SNP number, a2 = End SNP number</td></tr>
+<tr><td valign="top">-snp2 b1 b2 </td><td valign="top">second SNP window, b1 = Start SNP number, b2 = End SNP number</td></tr>
+<tr class="alt"><td valign="top">-i file.bed </td><td valign="top">input file</td></tr>
+<tr><td valign="top">-i2 file2.bed </td><td valign="top">second (optional) input file for second SNP window</td></tr>
+<tr class="alt"><td valign="top">-o file.out </td><td valign="top">results output file</td></tr>
+<tr><td valign="top">-log file.log </td><td valign="top">log file</td></tr>
+<tr class="alt"><td valign="top">-max m </td><td valign="top">maximum number of results, to safeguard accidently outputting half a trillion results. Set to 0 for no maximum at your own risk!</td></tr>
+<tr><td valign="top">-so </td><td valign="top">suppress output to screen</td></tr>
+<tr class="alt"><td valign="top">-filter-all </td><td valign="top">all statistic thresholds must be met (as ordered)</td></tr>
+<tr><td valign="top">-filter-any </td><td valign="top">any statistic threshold may be met</td></tr>
+<tr class="alt"><td valign="top">-gap </td><td valign="top">gap in base pair position that SNPs need to be for case only tests. Set to 0 for no gap.</td></tr>
+<tr><td valign="top">-mem0 </td><td valign="top">(slow) do not store SNPs in memory</td></tr>
+<tr class="alt"><td valign="top">-mem1 </td><td valign="top">(faster) store SNPs in memory, binary</td></tr>
+<tr><td valign="top">-mem2 </td><td valign="top">(fastest) store SNPs in memory, integer</td></tr>
+<tr class="alt"><td valign="top">-rsq </td><td valign="top">report R squared statistic between SNP pairs for cases and controls</td></tr>
+<tr><td valign="top">-dprime </td><td valign="top">report D' statistic between SNP pairs for cases and controls</td></tr>
+</table>
+<p>
+The SNP numbers &ldquo;a1&rdquo; and &ldquo;a2&rdquo; etc. refer to the position the SNPs appears in the map file (<tt>.bim</tt>). </p>
+<p>
+For example, to use these options to analyse SNPs from SNP number 1 to SNP number 60 against SNPs from SNP number 50 to SNP number 100 using binary pedigree file <tt>mydata.bed</tt> type the following: </p>
+<pre>./cassi -snp1 1 60 -snp2 50 100 mydata.bed
+</pre>
+<p>
+This will output details of the analysis and will look something like the following: </p>
+<pre>CASSI: SNP interaction analysis software, v2.00
+-----------------------------------------------
+Copyright 2013 Richard Howey, GNU General Public License, v3
+Institute of Genetic Medicine, Newcastle University
+Parameters:
+Input file: mydata.bed
+Output file: cassi.out
+Log file: cassi.log
+Start SNP of first SNP window: 1
+End SNP of first SNP window: 60
+Start SNP of second SNP window: 50
+End SNP of second SNP window: 100
+Maximum no. of results: 1000000
+
+Data Summary Statistics:
+Number of SNPs: 100
+Number of subjects: 4686
+Number of cases: 1748 (37.3026%)
+Number of controls: 2938 (62.6974%)
+Number of missing: 0
+
+Test Statistic: Joint Effects
+P-value threshold for case/control results: 0.0001
+P-value threshold for case only results: 0.0001
+Total SNP pairs calculated: 2994
+Total SNP pair statistics passing threshold: 80
+
+Number of SNP pairs with results: 80
+
+Run time: less than one second
+</pre>
+<p>
+To do the above analysis where the second SNP window is given by a different pedigree file type the following: </p>
+<pre>./cassi -snp1 1 60 -snp2 50 100 mydata.bed mydata2.bed
+</pre>
+<p>
+In addition, each different test has its own options, see the relevant sections for details. The joint effects test is used by default if no test is specified. If any tests are specified, as follows, then only these tests will be calculated. </p>
+<table id="tablestylel" class="center">
+<tr><th>Option </th><th>Description</th></tr>
+<tr class="alt"><td valign="top">-je </td><td valign="top">do joint effects test</td></tr>
+<tr><td valign="top">-awu </td><td valign="top">do adjusted Wu test</td></tr>
+<tr class="alt"><td valign="top">-wz </td><td valign="top">do Wellek Ziegler test</td></tr>
+<tr><td valign="top">-afe </td><td valign="top">do adjusted fast epistasis test</td></tr>
+<tr class="alt"><td valign="top">-lr </td><td valign="top">do logistic regression test</td></tr>
+</table>
+<p>
+For example, to do the adjusted Wu and adjusted fast epistasis test type: </p>
+<pre>./cassi -afe -awu mydata.bed </pre>
+<p>
+<b>Note:</b> Any options for individual tests must follow the option to do that test. For example: </p>
+<pre>./cassi -je -je-th 1e-6 mydata.bed
+</pre>
+<p>
+The default options for CASSI are: </p>
+<table id="tablestylel" class="center">
+<tr><th>Option </th><th>Description</th></tr>
+<tr class="alt"><td valign="top">-snp1 1 * </td><td valign="top">All SNPs in pedigree file</td></tr>
+<tr><td valign="top">-snp2 1 * </td><td valign="top">All SNPs in pedigree file (or 2nd pedigree file if given)</td></tr>
+<tr class="alt"><td valign="top">-o cassi.out </td><td valign="top">set the output file to cassi.out</td></tr>
+<tr><td valign="top">-log cassi.log </td><td valign="top">set the log file to cassi.log</td></tr>
+<tr class="alt"><td valign="top">-je </td><td valign="top">use the joint effects test</td></tr>
+<tr><td valign="top">-*-th 0.0001 </td><td valign="top">use p-value threshold of 0.0001 for any tests used</td></tr>
+<tr class="alt"><td valign="top">-max 1000000 </td><td valign="top">limit the maximum number of results to 1 million</td></tr>
+<tr><td valign="top">-gap 1000 </td><td valign="top">SNPs need to be 1000 base pairs apart for case only tests</td></tr>
+<tr class="alt"><td valign="top">-mem2 </td><td valign="top">(fastest) store SNPs in memory, integer</td></tr>
+<tr><td valign="top">-filter-all </td><td valign="top">all statistic thresholds must be met (as ordered)</td></tr>
+</table>
+<p>
+If the output file is set then the default log file is given by this name with the extension changed. For example, if the output file is set to <tt>myresults.dat</tt> then the default log file will be <tt>myresults.log</tt>. </p>
+<h2><a name="parameterfile">3.3 Parameter file</a></h2>
+<p>
+A parameter file, <tt>.pf</tt>, may be used with CASSI instead of writing all of the options on the command line. To use a parameter file simply type: </p>
+<pre>./cassi -pf myparameters.pf </pre>
+<p>
+The parameter file should be a text file with one option written on each line. For example, to perform the analysis above the file <tt>myparameters.pf</tt> would be as follows: </p>
+<pre>-snp1 1 60
+-snp2 50 100
+-i mydata.bed
+-i2 mydata2.bed
+</pre>
+<p>
+It is also possible to add comments to the file provided that the &ldquo;-&rdquo; character is not used, and to comment out any options by placing another character in front of any &ldquo;-&rdquo;. For example, the above parameter file could be edited as follows: </p>
+<pre>#This is the first SNP window
+-snp1 1 60
+
+#This is the second SNP window
+-snp2 50 100
+
+#This is the pedigree file for the first SNP window
+-i mydata.bed
+
+#This is the pedigree file for the second SNP window
+-i2 mydata2.bed
+
+#I might try this threshold later
+#-th 0.00001
+</pre>
+<h2><a name="memory">3.4 Memory options</a></h2>
+<p>
+The default option in CASSI is to store all of the SNPs of the second window in memory as integers to allow fast calculation of the interaction tests. The first window is not stored in memory. This could be a problem if the second window has a large amount of SNPs and you do not have much memory, in which case you should consider using the <tt>-mem1</tt> option to reduce the memory usage, where the SNPs are stored in memory in binary format. </p>
+<pre>./cassi -mem1 mydata.bed
+</pre>
+<p>
+This option could be useful if you are performing tests across the whole genome and want to perform many CASSI jobs at once. The <tt>-mem1</tt> uses approximately 1/4 of the memory used by the <tt>-mem2</tt> option, but takes about 1.5 times longer to execute. If you are desperate you could use the <tt>-mem0</tt> option as follows: </p>
+<pre>./cassi -mem0 mydata.bed
+</pre>
+<p>
+This option uses very little memory by not storing the SNPs in memory but takes about 2.3 times longer to execute than the <tt>-mem2</tt> option. </p>
+<h2><a name="rsq">3.5 <i>R</i><sup>2</sup> and D'</a></h2>
+<p>
+It is possible to output the <i>R</i><sup>2</sup>&nbsp;and/or the D' values between SNP pairs for the cases and controls with the <tt>-rsq</tt> and <tt>-dprime</tt> options respectively. For example, to output both of these: </p>
+<pre>./cassi -je -rsq -dprime mydata.bed
+</pre>
+<p>
+This will output the <i>R</i><sup>2</sup>&nbsp;values for the cases and controls, given by columns CASE_RSQ&nbsp;and CTRL_RSQ&nbsp;respectively. The D' values for the cases and controls are given by columns CASE_DPRIME&nbsp;and CTRL_DPRIME&nbsp;respectively. The output will look something like the following: </p>
+<pre>SNP1 CHR1 ID1 BP1 SNP2 CHR2 ID2 BP2 JE_CASE_LOG_OR JE_CASE_SE JE_CTRL_LOG_OR JE_CTRL_SE JE_CC_CHISQ JE_CC_P JE_CC_ALT JE_CO_CHISQ JE_CO_P JE_CO_ALT 
+   CASE_RSQ CTRL_RSQ CASE_DPRIME CTRL_DPRIME
+1 1 rs3825035 207140 11 1 rs6598035 242318 0.77282 0.148039 0.706996 0.154282 0.0947709 0.758197 N 27.2524 1.78554e-07 N 0.0240119 0.0251859 0.265702 0.233982
+3 1 rs1027430 214393 24 1 rs7394810 356710 -0.617103 0.145369 -0.909585 0.141284 2.08175 0.149069 N 18.0209 2.18499e-05 N 0.0172226 0.0397905 0.244953 0.338341
+16 1 rs1227455 252234 24 1 rs7394810 356710 0.668421 0.140027 0.517802 0.141032 0.574359 0.448532 N 22.7864 1.81045e-06 N 0.0225344 0.013668 0.225165 0.181016
+16 1 rs1227455 252234 69 1 rs1126386 1034938 -0.680131 0.150314 -0.559377 0.150018 0.323315 0.569622 N 20.4732 6.04708e-06 N 0.0201808 0.0135523 0.285269 0.238255
+19 1 rs4718635 273928 42 1 rs1090209 723609 0.524665 0.129452 0.135148 0.123059 4.75603 0.0291958 N 16.4266 5.05695e-05 N 0.0172832 0.00111035 0.146305 0.0369723
+...
+</pre>
+<p>
+If no test statistic is given to CASSI <i>R</i><sup>2</sup>&nbsp;and/or D' values are calculated and output. To output these extras values together with a test statistic meeting a threshold, the <tt>-rsq</tt> and <tt>-dprime</tt> options should be listed <i>after</i> the test statistic option, otherwise these will be calculated unnecessarily for test statistics not meeting the threshold. </p>
+<br />
+<div class="prevnext"><span class="left"><a href="installation.html">&lt;-prev</a>
+</span><span class="right"><a href="joint-effects.html">next-&gt;</a>
+</span></div><!-- End Right Column -->
+</div>
+</td>
+</tr></table>
+<!-- End Wrapper -->
+</td></tr></table>
+</div>
+ <!-- Start of StatCounter Code for Default Guide --> <script type="text/javascript"> var sc_project=8085233; var sc_invisible=1; var sc_security="e4dbb33e"; </script> <script type="text/javascript" src="http://www.statcounter.com/counter/counter.js"></script> <noscript><div class="statcounter"><a title="tumblr visit counter" href="http://statcounter.com/tumblr/" target="_blank"><img class="statcounter" src="http://c.statcounter.com/8085233/0/e4dbb33e/1/" alt="tumblr visit counter"></a></div></noscript> <!-- End of StatCounter Code for Default Guide --></body>
+</html>

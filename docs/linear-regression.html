@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>CASSI: Genome-Wide Interaction Analysis Software</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="cassistyles.css" />
+<link rel="shortcut icon" href="favicon.ico" />
+</head>
+<body>
+<!-- Begin Wrapper -->
+<div id="wrapper">
+<table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>
+<!-- Begin Header -->
+<div id="header">
+<table><tr>
+<td>
+<img width="150" src="cassi-logo.png" alt="CASSI: Genome-Wide Interaction Analysis Software"/>
+</td>
+<td>
+<p style="margin-left: 1em;">CASSI: Genome-Wide Interaction Analysis Software</p>
+</td></tr>
+</table>
+</div>
+<!-- End Header -->
+<!-- Begin Menu Navigation -->
+<ul id="menunav">
+<li><a href="index.html">Home</a></li>
+<li><a href="downloads.html">Download</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+<!-- End Menu Navigation -->
+
+</td></tr>
+<tr><td>
+<table border="0" cellpadding="0" cellspacing="0"><tr>
+<td valign="top">
+<!-- Begin Left Column -->
+<div id="leftcolumn">
+<!-- Begin Contents Navigation -->
+<div id="navcontainer">
+<ul>
+<li><a href="introduction.html">1 Introduction</a>
+</li>
+<li><a href="installation.html">2 Installation</a>
+</li>
+<li><a href="using.html">3 Using CASSI</a>
+<ul>
+<li><a href="using.html#input">3.1 Input Files</a></li>
+<li><a href="using.html#basic-options">3.2 Options</a></li>
+<li><a href="using.html#parameterfile">3.3 Parameter file</a></li>
+<li><a href="using.html#memory">3.4 Memory options</a></li>
+<li><a href="using.html#rsq">3.5 <i>R</i><sup>2</sup> and D'</a></li>
+</ul>
+</li>
+<li><a href="joint-effects.html">4 Joint Effects</a>
+<ul>
+<li><a href="joint-effects.html#je-options">4.1 Options</a></li>
+<li><a href="joint-effects.html#je-output">4.2 Output File</a></li>
+</ul>
+</li>
+<li><a href="adjusted-wu.html">5 Adjusted Wu</a>
+<ul>
+<li><a href="adjusted-wu.html#awu-options">5.1 Options</a></li>
+<li><a href="adjusted-wu.html#awu-output">5.2 Output File</a></li>
+</ul>
+</li>
+<li><a href="adjusted-fast-epistasis.html">6 Adjusted Fast Epistasis</a>
+<ul>
+<li><a href="adjusted-fast-epistasis.html#afe-options">6.1 Options</a></li>
+<li><a href="adjusted-fast-epistasis.html#afe-output">6.2 Output File</a></li>
+</ul>
+</li>
+<li><a href="wellek-ziegler.html">7 Wellek Ziegler</a>
+<ul>
+<li><a href="wellek-ziegler.html#wz-options">7.1 Options</a></li>
+<li><a href="wellek-ziegler.html#wz-output">7.2 Output File</a></li>
+</ul>
+</li>
+<li><a href="logistic-regression.html">8 Logistic Regression</a>
+<ul>
+<li><a href="logistic-regression.html#lr-options">8.1 Options</a></li>
+<li><a href="logistic-regression.html#lr-output">8.2 Output File</a></li>
+<li><a href="logistic-regression.html#covariates">8.3 Covariates</a></li>
+</ul>
+</li>
+<li><a href="linear-regression.html">9 Linear Regression</a>
+<ul>
+<li><a href="linear-regression.html#lin-options">9.1 Options</a></li>
+<li><a href="linear-regression.html#lin-output">9.2 Output File</a></li>
+<li><a href="linear-regression.html#lin-covariates">9.3 Covariates</a></li>
+</ul>
+</li>
+<li><a href="multiple-tests.html">10 Filtering Multiple Tests</a>
+<ul>
+<li><a href="multiple-tests.html#screening">10.1 Screening Tests</a></li>
+<li><a href="multiple-tests.html#calculate-all">10.2 Calculating All Tests</a></li>
+<li><a href="multiple-tests.html#run-times">10.3 Runtimes</a></li>
+</ul>
+</li>
+<li><a href="references.html">References</a></li>
+</ul>
+</div>
+<!-- End Contents Navigation -->
+</div>
+<!-- End Left Column -->
+</td>
+<td valign="top">
+<!-- Begin Right Column -->
+<div id="rightcolumn">
+<h1>9 Linear Regression</h1>
+<p>
+If the phenotype of the individuals is quantitative rather than case-control status then it is possible to use CASSI to test for epistasis using linear regression. This is done by fitting two linear regression models, one with an interaction term and one without, and these models are then compared using an F-test with their residual sum of squares. As with logistic regression it is also possible to incorporate covariates into any analysis. When covariates are included, linear regression is faster (see <a href="multiple-tests.html#run-times">section 10.3</a>) than logistic regression and may be useful as a screening step, see <a href="multiple-tests.html#screening">section 10.1</a>. </p>
+<h2><a name="lin-options">9.1 Options</a></h2>
+<p>
+The options that are specific to the linear regression test are: </p>
+<table id="tablestylel" class="center">
+<tr><th>Option </th><th>Description</th></tr>
+<tr class="alt"><td valign="top">-lin </td><td valign="top">perform the linear regression test</td></tr>
+<tr><td valign="top">-lin-th t </td><td valign="top">p-value threshold for the linear regression test</td></tr>
+<tr class="alt"><td valign="top">-lin-so </td><td valign="top">suppress results of test</td></tr>
+<tr><td valign="top">-lin-covar covariates.dat </td><td valign="top">set covariate file, covariates.dat</td></tr>
+<tr class="alt"><td valign="top">-lin-covar-number nums </td><td valign="top">only use covariates given by the numbers, nums</td></tr>
+<tr><td valign="top">-lin-covar-name na </td><td valign="top">only use covariates given by the names, na</td></tr>
+<tr class="alt"><td valign="top">-lin-covar-miss x </td><td valign="top">set missing covariate value, x</td></tr>
+</table>
+<p>
+The default p-value threshold is 0.0001 and the default missing covariate value is -9. </p>
+<p>
+For other basic options see <a href="using.html#basic-options">section 3.2</a>. </p>
+<h2><a name="lin-output">9.2 Output File</a></h2>
+<p>
+The output file from running a linear regression epistatis analysis using CASSI will look something like the following: </p>
+<pre>SNP1 CHR1 ID1 BP1 SNP2 CHR2 ID2 BP2 LIN_BETA LIN_BETA_SE LIN_FSTAT LIN_P
+541 1 rs2657134 4518966 783 1 rs7931361 5254756 0.0919379 0.0233854 15.4561 8.73237e-05
+542 1 rs2657163 4519034 783 1 rs7931361 5254756 0.104137 0.0239852 18.8505 1.48449e-05
+544 1 rs2641444 4519523 783 1 rs7931361 5254756 0.104289 0.0237317 19.3118 1.16842e-05
+639 1 rs7934332 4807931 651 1 rs1103368 4837468 0.130456 0.030614 18.1587 2.12699e-05
+642 1 rs1103114 4809648 651 1 rs1103368 4837468 0.130489 0.0308339 17.9098 2.42124e-05
+... 
+</pre>
+<p>
+The first line is a header labelling the columns of the results file. The SNP details for the pair of SNPs are given firstly followed by values calculated from the linear regression test. </p>
+<p>
+<b>LIN_BETA</b> interaction regression coefficient. </p>
+<p>
+<b>LIN_BETA_SE</b> is the standard error of the interaction regression coefficient. </p>
+<p>
+<b>LIN_FSTAT</b> is the F-test statistic. </p>
+<p>
+<b>LIN_P</b> is the corresponding p-value. </p>
+<h2><a name="lin-covariates">9.3 Covariates</a></h2>
+<p>
+It is possible to perform linear regression with a set of covariates. To do this use the <tt>-lin-covar</tt> option. For example: </p>
+<pre>./cassi -lin -lin-covar covariates.dat mydata.bed
+</pre>
+<p>
+The format of the covariate file is the same as for logistic regression, see <a href="logistic-regression.html#covariates">section 8.3</a>. </p>
+<p>
+The output file from running a linear regression analysis with covariates will look something like the following: </p>
+<pre>SNP1 CHR1 ID1 BP1 SNP2 CHR2 ID2 BP2 LIN_COVAR_BETA LIN_COVAR_BETA_SE LIN_COVAR_FSTAT LIN_COVAR_P
+541 1 rs2647164 4518966 783 1 rs7931851 5253756 0.0927018 0.0234313 15.6524 7.87797e-05
+542 1 rs2647163 4519034 783 1 rs7931851 5253756 0.106082 0.0240464 19.4619 1.08102e-05
+544 1 rs2641444 4519523 783 1 rs7931851 5253756 0.1055 0.0237654 19.7067 9.52224e-06
+639 1 rs7934322 4807931 651 1 rs1103368 4837461 0.129999 0.0306687 17.9675 2.34979e-05
+642 1 rs1103114 4809648 651 1 rs1103368 4837461 0.129712 0.0308939 17.6284 2.80373e-05
+...
+</pre>
+<p>
+That is, it is the same as before but with a different header, which is useful when performing linear regression with and without covariates. </p>
+<br />
+<div class="prevnext"><span class="left"><a href="logistic-regression.html">&lt;-prev</a>
+</span><span class="right"><a href="multiple-tests.html">next-&gt;</a>
+</span></div><!-- End Right Column -->
+</div>
+</td>
+</tr></table>
+<!-- End Wrapper -->
+</td></tr></table>
+</div>
+ <!-- Start of StatCounter Code for Default Guide --> <script type="text/javascript"> var sc_project=8085233; var sc_invisible=1; var sc_security="e4dbb33e"; </script> <script type="text/javascript" src="http://www.statcounter.com/counter/counter.js"></script> <noscript><div class="statcounter"><a title="tumblr visit counter" href="http://statcounter.com/tumblr/" target="_blank"><img class="statcounter" src="http://c.statcounter.com/8085233/0/e4dbb33e/1/" alt="tumblr visit counter"></a></div></noscript> <!-- End of StatCounter Code for Default Guide --></body>
+</html>

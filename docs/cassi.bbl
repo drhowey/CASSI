@@ -1,0 +1,32 @@
+\begin{thebibliography}{4}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[\protect\citeauthoryear{Purcell, Neale, Todd-Brown, Thomas, Ferreira,
+  Bender, Maller, Sklar, de~Bakker, Daly, and Sham}{Purcell
+  et~al.}{2007}]{purcell:etal:07}
+Purcell S, Neale B, Todd-Brown K, Thomas L, Ferreira MA, Bender D, Maller J,
+  Sklar P, de~Bakker PI, Daly MJ, Sham PC. 2007.
+\newblock {PLINK: a tool set for whole-genome association and population-based
+  linkage analyses}.
+\newblock Am J Hum Genet 81:559--575.
+
+\bibitem[\protect\citeauthoryear{Ueki and Cordell}{Ueki and
+  Cordell}{2012}]{ueki:etal:12}
+Ueki M, Cordell HJ. 2012.
+\newblock Improved statistics for genome-wide interaction analysis.
+\newblock PLoS Genet 8:e1002625.
+
+\bibitem[\protect\citeauthoryear{Wellek and Ziegler}{Wellek and
+  Ziegler}{2009}]{wellek:ziegler:09}
+Wellek S, Ziegler A. 2009.
+\newblock A genotype-based approach to assessing the association between single
+  nucleotide polymorphisms.
+\newblock Hum Hered 67:128--139.
+
+\bibitem[\protect\citeauthoryear{Wu, Dong, Luo, Zhu, Peng, Reveille, and
+  Xiong}{Wu et~al.}{2010}]{Wu:etal:2010}
+Wu X, Dong H, Luo L, Zhu Y, Peng G, Reveille JD, Xiong M. 2010.
+\newblock A novel statistic for genome-wide interaction analysis.
+\newblock PLoS Genet 6:e1001131.
+
+\end{thebibliography}
